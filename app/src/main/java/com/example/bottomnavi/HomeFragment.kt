@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.bottomnavi.databinding.FragmentHomeBinding
 
 object HomeFragment : Fragment() {
 
     const val TAG: String = "LOG"
+
 
     // fragment가 메모리에 올라갔을때
     override fun onCreate(savedInstanceState: Bundle?) {
