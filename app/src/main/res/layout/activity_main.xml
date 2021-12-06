@@ -6,14 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <FrameLayout
+<!-- 프래그먼트들이 보여질 컨테이너 -->
+    <!-- nav host로 만들겨-->
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragments_frame"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_nav"
-        android:background="#DCDCDC">
-    </FrameLayout>
+        android:background="#DCDCDC"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"

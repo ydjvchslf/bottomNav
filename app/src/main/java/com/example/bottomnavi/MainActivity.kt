@@ -3,14 +3,15 @@ package com.example.bottomnavi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import androidx.databinding.DataBindingComponent
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.bottomnavi.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(){
 
-    val TAG: String = "LOG"
+    val TAG: String = "로그"
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var rankFragment: RankFragment
@@ -27,7 +28,17 @@ class MainActivity : AppCompatActivity(){
 
         Log.d(TAG, "MainActivity - onCreate()")
 
-        binding.bottomNav.setOnNavigationItemSelectedListener(onBottomNavigationItemSelectedListener)
+        //binding.bottomNav.setOnNavigationItemSelectedListener(onBottomNavigationItemSelectedListener)
+
+        //네비게이션 담는 호스트
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragments_frame) as NavHostFragment
+
+        //네비게이션 컨트롤러
+        val navController = navHostFragment.navController
+
+        //바텀 네비게이션 뷰와 네비게이션을 묶어준다
+        NavigationUI.setupWithNavController(binding.bottomNav, navController)
+
 
     }
 
@@ -35,7 +46,6 @@ class MainActivity : AppCompatActivity(){
         when(it.itemId){
             R.id.menu_home -> {
                 Log.d(TAG, "MainActivity - 홈버튼클릭")
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, homeFragment)
             }
             R.id.menu_rank -> {
                 Log.d(TAG, "MainActivity - 랭킹클릭")
