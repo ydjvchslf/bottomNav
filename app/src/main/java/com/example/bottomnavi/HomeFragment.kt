@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.bottomnavi.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -30,6 +31,13 @@ class HomeFragment : Fragment() {
 
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         mBinding = binding
+
+
+        binding.button.setOnClickListener {
+            // 화면전환 & args 인자 전달
+            val str = "안녕하세유"
+            Navigation.findNavController(binding.root).navigate(HomeFragmentDirections.actionHomeToDetail(str))
+        }
 
         return mBinding?.root
     }
